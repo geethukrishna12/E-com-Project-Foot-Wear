@@ -4,10 +4,10 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
-    all_product=Products.objects.all()
-    recent_product=Products.objects.order_by('priority',DESC )
+    featured_product=Products.objects.order_by('priority')[:4]
+    recent_product=Products.objects.order_by('-id')[:4]
     context={
-        'all_product':all_product,
+        'featured_product':featured_product,
         'recent_product':recent_product,
     }
     return render(request,'index.html',context)
