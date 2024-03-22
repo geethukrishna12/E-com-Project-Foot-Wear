@@ -52,18 +52,33 @@
         <div class="col-lg-4 col-6 text-right">
             <!-- <p class="m-0">My Account</p> -->
             <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown"> <a href=""
-                        class="btn px-0 ml-3">
-                        <i class="fas fa-user text-primary" style="display: block;"></i>
+                <!-- {% if user.is_authenticated %}
 
+                {{user.username}}
+                {% endif %} -->
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                    <a href="" style="color: black;" class="btn px-0 ml-3">
+                        <i class="fas fa-user text-primary" style="display: block;"></i>
+                        {% if user.is_authenticated %}
+                        {{user.username}}
+
+                        {% else %}
+                        Profile
+                        {% endif %}
                     </a>
                 </button>
+                {% if not user.is_authenticated %}
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="{% url 'customers:show_account' %}"><button class="dropdown-item" type="button">Sign
                             in</button></a>
                     <a href="{% url 'customers:show_account' %}"> <button class="dropdown-item" type="button">Sign
                             up</button></a>
+                    {% else %}
+                    <a href="{% url 'customers:sign_out' %}"> <button class="dropdown-item" type="button">Sign
+                            Out</button></a>
                 </div>
+                {% endif %}
+
             </div>
 
         </div>
